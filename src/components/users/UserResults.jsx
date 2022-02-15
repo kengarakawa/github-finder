@@ -6,12 +6,9 @@ import GithubContext from '../../context/github/GithubContext'
 
 const UserResults = () => {
   
-  const { fetchUsers , isLoading , users } = useContext(GithubContext)
-
-  useEffect(() => {
-    fetchUsers()
-  }, [])
+  const { isLoading , users } = useContext(GithubContext)
   
+
 
   return isLoading ? (
     <Spinner />
