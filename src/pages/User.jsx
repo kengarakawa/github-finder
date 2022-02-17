@@ -7,19 +7,28 @@ import Spinner from "../components/layout/Spinner"
 import GithubContext from "../context/github/GithubContext"
 // import { getUserAndRepos } from "../context/github/GithubActions"
 import RepoList from "../components/repos/RepoList"
-
+import { getUserAndRepos } from "../context/github/GithubAction"
 
 function User() {
-  const { user, isLoading, getUser , getUserRepos , repos } = useContext(GithubContext)
-
+  const { user, isLoading, repos , dispatch  } = useContext(GithubContext)
   const params = useParams()
+  
+  
+  
 
-  useEffect(() => {
+  useEffect( () => {
       
-    getUser(params.login)
-    getUserRepos(params.login )
-    // eslint-disable-ext-line react-hooks/exhaustive-deps
-  }, [])
+      dispatch({type: 'SET_LOADING'})
+      const getUserData = async() => {
+          const userData = await getUserAndRepos(params.login)
+          console.log(userData)
+          dispatch({type: 'GET_USER_AND_REPOS' , payload: userData  })
+
+         
+      }       
+    getUserData()    
+    
+  }, [dispatch, params.login])
 
   const {
     name,

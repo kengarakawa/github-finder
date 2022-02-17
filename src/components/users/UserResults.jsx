@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react"
+import { useContext } from "react"
 import Spinner from '../../components/layout/Spinner.jsx'
 import UserItem from './UserItem.jsx'
 
